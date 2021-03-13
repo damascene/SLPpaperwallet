@@ -6501,7 +6501,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 }
 #paperarea .artwallet .btcprivwif
 {
-	position: absolute; top: 261px; left: 11px; z-index: 100; font-size: 10px; background-color: transparent;
+	position: absolute; top: 240px; left: 40px; z-index: 100; font-size: 10px; background-color: transparent;
 	font-weight:bold; color: #ffffff; margin: 0;
 		-webkit-transform-origin:top left; -webkit-transform:rotate(-45deg);
 		-moz-transform-origin:top left;    -moz-transform:rotate(-45deg);
@@ -6631,7 +6631,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
     text-align: center;
     position: absolute;
     width: 100%;
-    bottom: 0px;
+    bottom: 24px;
     white-space: nowrap;
   }
   /* End Lock and Denomination CSS */
@@ -6796,7 +6796,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 	#detailcommands .button { position: relative; z-index: 20; }
 	#detailbip38encryptspan { display: none; }
 	.paper .commands { border: 2px solid #0fcb97; }
-	#bulkstartindex, #paperlimit, #paperlimitperpage { width: 35px; }
+	#bulkstartindex, #paperlimit, #paperlimitperpage { width: 25px; }
 	#bulklimit { width: 45px; }
 
 	.footer { font-size: 90%; clear: both; width: 770px; padding: 10px 0 10px 0; margin: 12px auto auto auto; }
@@ -7000,7 +7000,8 @@ input[type=checkbox] { position: relative; z-index: 20; }
 						<center>
 							<span><input type="button" id="newaddress" value="Generate New Address" onclick="ninja.wallets.singlewallet.generateNewAddressAndKey();" /></span>
 						</center>
-						<!--<span class="print"><input type="button" name="print" value="Print" id="singleprint" onclick="window.print();" /></span>-->
+                        <!-- was commented -->
+						<span class="print"><input type="button" name="print" value="Print" id="singleprint" onclick="window.print();" /></span>
 					</div>
 				</div>
 
@@ -7183,14 +7184,14 @@ and entering your simpleledger address.</p>
 					</div>
 					<div class="style-row">
 						<div onmouseover="toggleSelectedDesign(this)" onclick="toggleSelectedDesign(this)" class="style-col sc-left">
-							<div onclick="designConfirmed(this)" data-wallet-skin="inksaver" class="confirm-design">
+							<div onclick="designConfirmed(this)" data-wallet-skin="default" class="confirm-design">
 								Select and Continue
 							</div>
 							<div class="style-label">
 								SLP-paperwallet default
 							</div>
 							<div class="style-example">
-								<img src="img/paper-wallet-ink-saver.png">
+								<img src="img/paper-wallet-default.png">
 							</div>
 						</div>
 
@@ -7292,6 +7293,7 @@ and entering your simpleledger address.</p>
   						</select>
   					</span>
 						<span><label id="paperlabeladdressestogenerate" for="paperlimit">Addresses to generate:</label> <input onchange="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1, document.getElementById('paperlimitperpage').value * 1, !document.getElementById('paperart').checked, document.getElementById('paperpassphrase').value);" type="text" id="paperlimit" /></span>
+                        <span><label id="paperlabeladdressesperpage" for="paperlimitperpage">Addresses per page:</label> <input type="text" id="paperlimitperpage" /></span>
 						<!--
 						<span><button id="advancedcommandbtn" onclick="toggleAdvanced()">Advanced Settings</button></span>
 						-->
@@ -7305,8 +7307,9 @@ and entering your simpleledger address.</p>
 							        advancedDisplay.style.display = "block"
 							        advancedBtnTitle.innerHTML = "Hide Advanced Settings"
 							        walletDisplayed.style.display = "none"
+                                    // commented
 							        // Hide Step 3 Print; show when wallet is generated
-							        document.getElementById('stepThreePrint').style.display="none"
+							        //document.getElementById('stepThreePrint').style.display="none"
 
 							    } else {
 							        advancedDisplay.style.display = "none"
@@ -7414,7 +7417,7 @@ and entering your simpleledger address.</p>
 
 						<div class="generate-button">
 							<span>
-								<!--<input type="button" id="papergenerate" value="Generate" onclick="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1, document.getElementById('paperlimitperpage').value * 1, !document.getElementById('paperart').checked, document.getElementById('paperpassphrase').value);" />-->
+								<input type="button" id="papergenerate" value="Generate" onclick="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1, document.getElementById('paperlimitperpage').value * 1, !document.getElementById('paperart').checked, document.getElementById('paperpassphrase').value);" />
 								<button id="papergenerate" onclick="generateFromAdvanced()">Generate</button>
 							</span>
 					</div>
@@ -10795,7 +10798,7 @@ ninja.wallets.paperwallet = {
 
     case 'default':
       //file resource version:
-      image = 'img/bitcoin-com-paper-wallet-template.png';
+      image = 'img/paper-wallet-default.png';
       //base64 encoded version:
       break;
 
@@ -10939,13 +10942,14 @@ ninja.wallets.paperwallet = {
 								//"<div class='" + keyelement + "' id='" + keyelement + i + "'></div>" +
 								"<svg height='42' width='392' style='fill:" + addressColor + "' class='" + keyelement + "'><text id='" + keyelement + i + "' x='0' y='15' font-size='10px' fill='" + addressColor + "'></text></svg>" +
 
-								"<div class='lock-ctn'>" +
-						    	"<div class='lock-art'>" +
-						      	"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 54 54' style='enable-background:new 0 0 54 54;'' xml:space='preserve' width='57%'>" +
-						        	"<path style='fill:" + lockArtColor +"' d='M43,20.113V14.5C43,6.505,35.822,0,27,0S11,6.505,11,14.5v5.613c-3.401,0.586-6,3.55-6,7.117v19.542   C5,50.757,8.243,54,12.229,54h29.542C45.757,54,49,50.757,49,46.771V27.229C49,23.663,46.401,20.699,43,20.113z M13,14.5   C13,7.607,19.28,2,27,2s14,5.607,14,12.5V20H13V14.5z M47,46.771C47,49.654,44.654,52,41.771,52H12.229C9.346,52,7,49.654,7,46.771   V27.229C7,24.346,9.346,22,12.229,22h29.542C44.654,22,47,24.346,47,27.229V46.771z'/>" +
-						        	"<path style='fill:" + lockArtColor +"' d='M27,28c-2.206,0-4,1.794-4,4v6c0,2.206,1.794,4,4,4s4-1.794,4-4v-6C31,29.794,29.206,28,27,28z M29,38c0,1.103-0.897,2-2,2   s-2-0.897-2-2v-6c0-1.103,0.897-2,2-2s2,0.897,2,2V38z'/>" +
-						      	"</svg>" +
-							    "</div>" +
+								//~ hidde the lock and SLP amount
+								//~ "<div class='lock-ctn'>" +
+						    	//~ "<div class='lock-art'>" +
+						      	//~ "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 54 54' style='enable-background:new 0 0 54 54;'' xml:space='preserve' width='57%'>" +
+						        	//~ "<path style='fill:" + lockArtColor +"' d='M43,20.113V14.5C43,6.505,35.822,0,27,0S11,6.505,11,14.5v5.613c-3.401,0.586-6,3.55-6,7.117v19.542   C5,50.757,8.243,54,12.229,54h29.542C45.757,54,49,50.757,49,46.771V27.229C49,23.663,46.401,20.699,43,20.113z M13,14.5   C13,7.607,19.28,2,27,2s14,5.607,14,12.5V20H13V14.5z M47,46.771C47,49.654,44.654,52,41.771,52H12.229C9.346,52,7,49.654,7,46.771   V27.229C7,24.346,9.346,22,12.229,22h29.542C44.654,22,47,24.346,47,27.229V46.771z'/>" +
+						        	//~ "<path style='fill:" + lockArtColor +"' d='M27,28c-2.206,0-4,1.794-4,4v6c0,2.206,1.794,4,4,4s4-1.794,4-4v-6C31,29.794,29.206,28,27,28z M29,38c0,1.103-0.897,2-2,2   s-2-0.897-2-2v-6c0-1.103,0.897-2,2-2s2,0.897,2,2V38z'/>" +
+						      	//~ "</svg>" +
+							    //~ "</div>" +
 						    "<div class='bip-encrypted' style='display:" + encryptedDisplay + "background-color:" + lockArtBgColor +" color:" + lockArtColor + "'>BIP38 ENCRYPTED</div>" +
 						    "<div class='denomination' style='color:" + lockArtColor + "'>" + denomBCH + "</div>" +
 							  "</div>" +
@@ -12816,6 +12820,7 @@ if (ninja.getQueryString()["showseedpool"] == "true" || ninja.getQueryString()["
 }
 	</script>
 
+<!-- Hide branding
 <div class="section-1">
   <div class="container">
     <div class="row">
@@ -12842,8 +12847,10 @@ if (ninja.getQueryString()["showseedpool"] == "true" || ninja.getQueryString()["
     </div>
   </div>
 </div>
+-->
 
 
 
 </body>
 </html>
+
